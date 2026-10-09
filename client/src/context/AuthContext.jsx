@@ -22,11 +22,15 @@ export const AuthProvider = ({ children }) => {
           console.error('Failed to parse saved user:', e);
         }
       } else {
-        // Require manual login instead of auto-defaulting for production
         setUser(null);
         setToken(null);
       }
       setLoading(false);
+
+      // Background health ping to wake up free-tier Render backend instantly
+      try {
+        authAPI.getMe().catch(() => {});
+      } catch (err) {}
     };
 
     initAuth();
