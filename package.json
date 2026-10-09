@@ -1,0 +1,12 @@
+{
+  "name": "agrivalue-ai-mern-monorepo",
+  "version": "1.0.0",
+  "description": "AgriValue AI - MERN + Python FastAPI B.Tech Major Project",
+  "scripts": {
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev",
+    "dev:ai": "python -m uvicorn main:app --app-dir ai-service --host 127.0.0.1 --port 8008 --reload",
+    "build:client": "npm --prefix client run build",
+    "start": "node server/server.js"
+  }
+}

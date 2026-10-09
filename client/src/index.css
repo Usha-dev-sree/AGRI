@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-primary: #0a0f0d;
+    --bg-surface: #111a16;
+    --bg-card: rgba(18, 28, 24, 0.75);
+    --border-glass: rgba(52, 211, 153, 0.18);
+    --primary-emerald: #10b981;
+    --primary-neon: #34d399;
+    --accent-cyan: #06b6d4;
+  }
+
+  body {
+    background-color: #070d0a;
+    color: #f3f4f6;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+}
+
+/* Glassmorphic UI Utilities */
+.glass-panel {
+  background: rgba(16, 26, 21, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(52, 211, 153, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-card {
+  background: rgba(22, 36, 29, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(52, 211, 153, 0.12);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(52, 211, 153, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -10px rgba(16, 185, 129, 0.2);
+}
+
+.glass-input {
+  background: rgba(12, 20, 16, 0.8);
+  border: 1px solid rgba(52, 211, 153, 0.2);
+  color: #f3f4f6;
+  transition: all 0.2s ease;
+}
+
+.glass-input:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+  outline: none;
+}
+
+/* Custom laser scanning animation */
+@keyframes laserSweep {
+  0% {
+    top: 0%;
+    opacity: 0.8;
+  }
+  50% {
+    top: 96%;
+    opacity: 1;
+  }
+  100% {
+    top: 0%;
+    opacity: 0.8;
+  }
+}
+
+.scanner-laser {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ef4444, #f97316, #ef4444, transparent);
+  box-shadow: 0 0 15px 4px rgba(239, 68, 68, 0.75);
+  animation: laserSweep 2.8s infinite ease-in-out;
+  z-index: 20;
+}
+
+.scanner-grid {
+  background-size: 30px 30px;
+  background-image: 
+    linear-gradient(to right, rgba(239, 68, 68, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(239, 68, 68, 0.15) 1px, transparent 1px);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #090e0b;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e3328;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2d4f3e;
+}

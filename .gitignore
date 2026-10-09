@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Python Virtual Environments & Caches
+venv/
+ai-service/venv/
+__pycache__/
+*.pyc
+
+# Environment & local config
+.env
+*.env
+.DS_Store
+Thumbs.db
