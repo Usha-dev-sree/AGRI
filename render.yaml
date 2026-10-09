@@ -1,0 +1,41 @@
+services:
+  # 1. Python AI Microservice
+  - type: web
+    name: agrivalue-ai-service
+    runtime: python
+    rootDir: ai-service
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PORT
+        value: 8000
+
+  # 2. Node.js Express Backend API
+  - type: web
+    name: agrivalue-backend
+    runtime: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DB_HOST
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        value: agrivalue_db
+      - key: DB_PORT
+        value: 3306
+      - key: AI_SERVICE_URL
+        fromService:
+          type: web
+          name: agrivalue-ai-service
+          property: host
