@@ -1,8 +1,9 @@
 services:
-  # 1. Python AI Microservice
+  # 1. Python AI Microservice (Free Plan)
   - type: web
     name: agrivalue-ai-service
     runtime: python
+    plan: free
     rootDir: ai-service
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
@@ -10,10 +11,11 @@ services:
       - key: PORT
         value: 8000
 
-  # 2. Node.js Express Backend API
+  # 2. Node.js Express Backend API (Free Plan)
   - type: web
     name: agrivalue-backend
     runtime: node
+    plan: free
     rootDir: server
     buildCommand: npm install
     startCommand: node server.js
