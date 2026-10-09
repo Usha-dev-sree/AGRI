@@ -90,8 +90,12 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Start Express Server
-app.listen(PORT, () => {
-  console.log(`🚀 AgriValue AI Server listening on http://localhost:${PORT}`);
-  console.log(`🌾 API Health available at: http://localhost:${PORT}/api/health`);
-});
+// Start Express Server locally or export for serverless environments
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`🚀 AgriValue AI Server listening on http://localhost:${PORT}`);
+    console.log(`🌾 API Health available at: http://localhost:${PORT}/api/health`);
+  });
+}
+
+export default app;
